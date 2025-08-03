@@ -4,6 +4,7 @@
 
     * {
         font-family: "Lato", sans-serif;
+        color: var(--redlsb);
 
     } 
 
@@ -31,8 +32,12 @@
             background-color: var(--blk);
         }
 
-        .bg_wht{
+        .bg_redlsb{
             background-color: var(--redlsb);
+        }
+
+        .bg_wht{
+            background-color: white;
         }
 
 /*------- CLASSI COLORI TESTO -------*/
@@ -45,12 +50,17 @@
             color: var(--blk);
         }
 
-         .text_wht{
+         .text_redlsb{
             color: var(--redlsb);
  
         }
 
 /* ------- PERSONALIZZAZIONE NAVBAR ------- */
+
+        .navbar{
+            height: 140px;
+            transition: 0.5s;
+        }
 
         .nav-link{ /* REIMPOSTO CLASSE NAV-LINK DI BOOTSTRAP */
             font-weight: 700;
@@ -59,13 +69,14 @@
         }
 
         .nav-link:hover{
-            color: var(--redlsb);
-            text-shadow: 2px 2px 5px var(--redlsb), -2px -2px 5px var(--redlsb);
+            color: white !important;
+            text-shadow: 2px 2px 7px var(--redlsb), -2px -2px 7px var(--redlsb);
         }
 
         .logo{
             width: 80px;
         }
+
         
 
         
