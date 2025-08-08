@@ -1,24 +1,30 @@
 /* PERSONALIZZAZIONE STILE PAGINA WEB PROGGETTO PRESTO_1 */
 
-/*------- SETTAGGI DI DEFAULT DELLE PAGINE -------*/
-
-    * {
-        font-family: "Lato", sans-serif;
-        color: var(--redlsb);
-
-    } 
-
-        h1, h2, h3, h4, h5, .h1, .h2, .h3, .h4, .h5{ 
-            font-family: "Orbitron", sans-serif;
-    }
-
 /*------- COLORI PRINCIPALI DI DEFAULT DEL SITO -------*/
 
         :root{
             --ylw: rgb(255, 232, 31);
             --blk: rgb(23, 23, 23);
             --redlsb: rgb(228, 34, 43);
+            --blu: rgb(23,23,230);
+            --wht: rgb(244, 244, 244);
     }
+
+    /*------- SETTAGGI DI DEFAULT DELLE PAGINE -------*/
+
+    * {
+        font-family: "Lato", sans-serif;
+        } 
+
+        h1, h2, h3, h4, h5, .h1, .h2, .h3, .h4, .h5{ 
+            font-family: "Orbitron", sans-serif;
+        }
+
+    body{
+        background-color: var(--blk);
+        color: var(--ylw);
+    }    
+
 
 /* PREIMPOSTIAMO DELLE CLASSI PER I COLORI (PER ESEMPIO: PER LO SFONDO, PER IL TESTO, PER I TITOLI E COSI' VIA  */
 
@@ -34,6 +40,10 @@
 
         .bg_redlsb{
             background-color: var(--redlsb);
+        }
+
+        .bg_blu{
+            background-color: var(--blu);
         }
 
         .bg_wht{
@@ -55,10 +65,14 @@
  
         }
 
+        .text_blu{
+            color: var(--blu);
+        }
+
 /* ------- PERSONALIZZAZIONE NAVBAR ------- */
 
         .navbar{
-            height: 140px;
+            height: 70px;
             transition: 0.5s;
         }
 
@@ -69,14 +83,84 @@
         }
 
         .nav-link:hover{
-            color: white !important;
+            color: var(--wht) !important;
             text-shadow: 2px 2px 7px var(--redlsb), -2px -2px 7px var(--redlsb);
+        }
+
+        .navbar-toggler-icon{
+            color: var(--ylw);
         }
 
         .logo{
             width: 80px;
+           
         }
 
-        
+        .logo2{
+            width: 100px;
+            transition: 1s;
+            
+        }
 
-        
+/* ------- PERSONALIZZAZIONE HEADER ------- */
+
+        .header{
+            background-image: linear-gradient(rgba(23,23,23), transparent, rgb(21, 21, 74)) ,url(https://static.vecteezy.com/ti/foto-gratuito/p1/6638648-abstract-hyperspace-of-light-speed-and-warp-speed-in-blue-star-trail-gratuito-foto.jpg);
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+            
+        }
+
+        .btn_mystyle{
+            color: var(--ylw);
+            background-color: var(--blk);
+            border: 2px solid var(--ylw);
+            border-radius: 50px;
+            margin: 0px 15px;
+            padding: 15px 25px;
+            transition: 0.5s; /* Esegue lentamente l'attributo scale() */
+        }
+
+        .btn_mystyle:hover{
+            color: var(--blk);
+            background-color: var(--ylw);
+            transform: scale(1.1);
+        }
+
+/* ------- SETTORE POSITIONED ------- */
+
+        .positioned{
+            position: relative;
+            top: -140px;
+        }
+
+        .positionedstylecol{
+            padding: 10px;
+            border: 2px solid var(--blk);
+            cursor: pointer;
+            transition: 1s;
+        }
+
+        .positionedstylecol:hover{
+            transform: scale(1.2);
+            background-color: var(--blk);
+            color: var(--redlsb);
+            border: 2px solid var(--redlsb);
+        }
+
+/* SETTORE NUMERI */
+
+        .numeri{
+            font-size: 50px;
+            font-weight: 900;
+        }
+
+/* SETTORE MEDIAQUERY */
+        @media screen and (max-width: 600px){
+            
+        .positioned{
+                position: static;
+                background-color: var(--blk);
+            }
+        }
