@@ -138,6 +138,8 @@
         .positionedstylecol{
             padding: 10px;
             border: 2px solid var(--blk);
+            background-color: var(--ylw);
+            color: var(--blk);
             cursor: pointer;
             transition: 1s;
         }
@@ -149,12 +151,31 @@
             border: 2px solid var(--redlsb);
         }
 
-/* SETTORE NUMERI */
+    /*------ SETTORE NUMERI ------ */
 
         .numeri{
             font-size: 50px;
             font-weight: 900;
         }
+
+    /*------- SETTORE SWIPER-JS --------*/
+
+        .swiper{
+            height: 600px;
+        }
+
+        .swiper-slide{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .card_recensione{
+            height: 250px;
+            width: 500px;
+            border: 2px solid var(--ylw);
+            border-radius: 20px;
+        }
+
 
 /* SETTORE MEDIAQUERY */
         @media screen and (max-width: 600px){

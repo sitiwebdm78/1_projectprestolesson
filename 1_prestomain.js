@@ -12,10 +12,13 @@
         let incrementCS = document.querySelector('#incrementCS');// Variabile Per la Catturra del numero incrementale all'interno del tag <span> nel paragrafo Clienti Soddisfatti.
 
         let incrementCG = document.querySelector('#incrementCG');// Variabile Per la Catturra del numero incrementale all'interno del tag <span> nel paragrafo Consegne Giornaliere.
+
+        let swiperWrapper = document.querySelector('.swiper-wrapper');
     
     /* ----- VARIABILI E COSTANTI DI VERIFICA ----- */
 
         let verifica = false;
+        let conferma = true; // Variabile per l'avvio del timeout.
 
     /* ----- CHIAMATE ASINCRONE ----- */
 
@@ -30,9 +33,23 @@
                 clearInterval(asyncroncall);
 
             };
-        },time);//3° Parametro) L'intervallo di tempo delle iterazioni.
+        }, time);//3° Parametro) L'intervallo di tempo delle iterazioni.
+            setTimeout(()=>{
+            confirm = true;
+        }, 10000);
     };
 
+        let observer = new IntersectionObserver((entries)=>{
+            entries.forEach((entry)=>{
+                if(entry.isIntersecting && conferma){
+                    incrementInterval(100, incrementPV, 100);
+                    incrementInterval(200, incrementCS, 50);
+                    incrementInterval(300, incrementCG, 20);
+                    conferma = false;  
+                };
+            });
+        });
+    
     /*----- FUNZIONI SUL DOM. ----- */
 
         window.addEventListener('scroll', ()=>{
@@ -75,7 +92,92 @@
             };           
         });
 
+        observer.observe(incrementPV);
 
-incrementInterval(100, incrementPV, 100);
-incrementInterval(200, incrementCS, 1000);
-incrementInterval(300, incrementCG, 2000);
+/*------- OGGETTO ARRAY RECENSIONI -------*/
+
+    let recensioni = [
+        /*  Oggetto*/ { utente : `Vincenzo Mauro`, descrizione : `Non è soddisfaciente come mi aspettavo`, valutazione : 2},
+        { utente : `Pasquale Iovine`, descrizione : `Bello e si può fare di più`, valutazione : 4},
+        { utente : `Gianni Petti`, descrizione : `Da migliorare`, valutazione : 3},
+        { utente : `Annamaria Marullo`, descrizione : `Bruttissimo`, valutazione : 1},
+        { utente : `Banana Mandarino`, descrizione : `Fantastico`, valutazione : 5},
+            ]
+
+    recensioni.forEach((recensione) =>{
+        let div = document.createElement('div');
+        div.classList.add('swiper-slide');
+        div.innerHTML = `
+            <div class="card_recensione">
+                <p class="text-center"> ${recensione.descrizione}</p>
+                <p class="h4 text-center">
+                    ${recensione.utente}
+                </p>
+                <div class="d-flex justify-content-center star">
+                  
+                </div>
+            </div>`;
+
+            swiperWrapper.appendChild(div);
+    });
+
+        let stars = document.querySelectorAll('.star');
+
+            stars.forEach((star, index)=>{
+                /* Devi per ogni valore della proprietà valutazione (esempio 5) utilizzando l'indice della NodeList e attraverso il ciclo for appendere i rispettivi div star */
+                for(let i = 1; i <= recensioni[index].valutazione; i++){     // Per poter arrivare a verificare il valore della proprietà valutazione attraverso il ciclo (for) sto dicendo parti da 1 e i deve eesere minore o uguale a recensioni(cioè l'array) in posizione dell'index(la stessa del div.valutazione.).
+
+                    let iconstar = document.createElement('i');// la 'i' si riferisce al tag <i> dell'icona di fontawesome ed è l'elelemnto che devo creare nel DOM per aggiungerlo nei div in cui verranno inseriti i valori della propriertà valutazione dell'oggetto recensioni.
+
+                    iconstar.classList.add('fa-solid', 'fa-star');
+                    star.appendChild(iconstar);
+
+                }// Fino a qui abbiamo inserito valutazione in stelle ma, non vediamo le stelle vuote per chi ha inserito una valutazione inferiore a 5 quindi, per ovviare possiamo:
+
+                let starvuote = 5 - recensioni[index].valutazione;
+                    for(let i = 1; i <= starvuote; i++){
+                        let iconstar = document.createElement('i');
+                        iconstar.classList.add('fa-regular', 'fa-star');
+                        star.appendChild(iconstar);
+            };
+            });
+
+/* SEZIONE INIZIALIZZAZIONE SWIPERJS */
+            const swiper = new Swiper('.swiper', {/* NELL'OGGETTO SWIPER, NON C'E' ALTRO CHE IL QUERYSELECTOR CHE SELEZIONA LA CLASSE.swiper */
+    // Optional parameters
+            // direction: 'vertical',
+            effect: "coverflow",
+      grabCursor: true,
+      centeredSlides: true,
+      slidesPerView: "auto",
+      coverflowEffect: {
+        rotate: 1000,
+        stretch: 0,
+        depth: 1000,
+        modifier: 1,
+        slideShadows: true,
+      },
+
+            loop: true,
+
+    // If we need pagination
+        //     pagination: {
+        //     el: '.swiper-pagination',
+        // },
+
+    // Navigation arrows
+            navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
+
+        autoplay: {
+        delay: 2500,
+        disableOnInteraction: false,
+      },
+    // And if we need scrollbar
+        //     scrollbar: {
+        //     el: '.swiper-scrollbar',
+        // },
+    });
+        
